@@ -44,3 +44,7 @@ input#cadastrar{
 label {
     font-size: 14pt;
 }
+
+.lateral {
+    background-color: blueviolet;
+}

@@ -1,43 +1,38 @@
-<?php 
-    $dsn = 'mysql:host=localhost;dbname=mercado';
-    $user = 'root';
-    $password = '03101995';
+<?php
 
-    try {
-        $connect = new PDO($dsn, $user, $password);
-    }catch (PDOException $ex){
-        echo "Erro não esperado".$ex->getMessage();
-    }catch (Exception $ex) {
-        echo "Erro de tipo genérico".$ex->getMessage();
-    }
+$dsn = 'mysql:host=localhost;dbname=mercado';
+$user = 'root';
+$pass = '03101995';
 
-    $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $email = $_POST['email'];
-    $data_nascimento = $_POST['data_nascimento'];
-
-    // echo "$nome: $cpf: $email: $data_nascimento"
-    try {
-
-        $sql = $connect->prepare("INSERT INTO cliente(nome_cliente, cpf_cliente, email_cliente, data_nascimento_cliente)VALUES(:nc, :cpf, :ec, :dt)");
-        $sql->bindParam(":nc", $nome);
-        $sql->bindParam(":cpf", $cpf);
-        $sql->bindParam(":ec", $email);
-        $sql->bindParam(":dt", $data_nascimento);
+try {
+    //  $pdo é uma variável de conexão que eu mesmo criei e usarei ela como uma instância 
+    $pdo = new PDO($dsn, $user, $pass);
     
-        $result = $sql->execute();
-        
-        if($result) {
-            echo "Cadastro realizado com sucesso!";
-        }else {
-            echo "Erro";
-        }
+} catch (PDOException $ex) {
+    echo 'Erro ' . $ex->getMessage();
+} catch (Exception $ex) {
+    echo "Erro genérico" . $ex->getMessage();
+}
 
-    }catch(PDOException $ex){
-        echo 'Erro'.$ex->getMessage();
-    }catch(Exception $ex){
-        echo $ex->getMessage();
-    }
+$nome = $_POST['nome'];
+$cpf = $_POST['cpf'];
+$email = $_POST['email'];
+$data = date('Y-m-d', strtotime($_POST['data_nascimento']));
 
+//==================================================== //
+/* INSERT DE  DADOS */
 
-?>  
+$insert = $pdo->prepare("INSERT INTO cliente(nome_cliente, cpf_cliente, email_cliente, data_nascimento) VALUES(:n, :c, :e, :d)");
+$insert->bindValue(":n", $nome);
+$insert->bindValue(":c", $cpf);
+$insert->bindValue(":e", $email);
+$insert->bindValue(":d", $data);
+$res = $insert->execute();
+
+if ($res) {
+    echo "Cadastro realizado com sucesso";
+}else {
+    echo "Erro no cadastro";
+}
+
+?>
