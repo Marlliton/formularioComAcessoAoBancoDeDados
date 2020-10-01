@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(46, 144, 241, 0.795);
+    color: white;
+}
+h1 {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.container {
+    width: 500px;
+    background: white;
+    padding: 30px;
+    margin: 50px auto;
+    display: block;
+    color: black;
+    
+}
+
+.entrada {
+    margin-bottom: 30px;
+    color: rgb(80, 79, 79);
+    height: 25px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1rf auto;
+    
+}
+
+input#cadastrar{
+    width: 354px;
+}
+
+label {
+    font-size: 14pt;
+}
