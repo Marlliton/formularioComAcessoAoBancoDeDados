@@ -22,19 +22,13 @@ $data = date('Y-m-d', strtotime($_POST['data_nascimento']));
 /* INSERT DE  DADOS */
 
 /* VERIFICANDO SE JA POSSUI CADASTRO */
-// $res = $pdo->query("select count(*) from cliente where email_cliente ='souza@gmail.com';");
 
-// print_r($res);
-
-
-
-
-$insert = $pdo->prepare("INSERT INTO cliente(nome, cpf, email_cliente, data_nascimento) VALUES(:n, :c, :e, :d)");
-$insert->bindValue(":n", $nome);
-$insert->bindValue(":c", $cpf);
-$insert->bindValue(":e", $email);
-$insert->bindValue(":d", $data);
-$res = $insert->execute();
+// $insert = $pdo->prepare("INSERT INTO cliente(nome, cpf, email_cliente, data_nascimento) VALUES(:n, :c, :e, :d)");
+// $insert->bindValue(":n", $nome);
+// $insert->bindValue(":c", $cpf);
+// $insert->bindValue(":e", $email);
+// $insert->bindValue(":d", $data);
+// $res = $insert->execute();
 
 
 // ============================================================//
@@ -67,17 +61,17 @@ $resultado = $dados->fetchAll(PDO::FETCH_ASSOC);
 
             <?php
 
-                if($resultado > 0) {
-                    for($i=0; $i<count($resultado); $i++){
-                        echo "<tr>";
-                        foreach($resultado[$i] as $key => $value) {
-                            if ($key != "id") {
-                                echo "<td>".$value."</td>";
-                            }
+            if ($resultado > 0) {
+                for ($i = 0; $i < count($resultado); $i++) {
+                    echo "<tr>";
+                    foreach ($resultado[$i] as $key => $value) {
+                        if ($key != "id") {
+                            echo "<td>" . $value . "</td>";
                         }
-                        echo "</tr>";
                     }
+                    echo "</tr>";
                 }
+            }
             ?>
         </table>
     </div>
