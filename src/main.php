@@ -22,13 +22,21 @@ $data = date('Y-m-d', strtotime($_POST['data_nascimento']));
 /* INSERT DE  DADOS */
 
 /* VERIFICANDO SE JA POSSUI CADASTRO */
+$cmd = $pdo->prepare("SELECT * FROM cliente WHERE email_cliente = :e;");
+$cmd->bindValue(":e", $email);
+$cmd->execute();
+$tot = $cmd->rowCount();
+if($tot > 0) {
+    echo "<h1> <font color=\"#ffffff\">Usuário ja cadastrado!</font></h1>";
+}else {
+    $insert = $pdo->prepare("INSERT INTO cliente(nome, cpf, email_cliente, data_nascimento) VALUES(:n, :c, :e, :d)");
+    $insert->bindValue(":n", $nome);
+    $insert->bindValue(":c", $cpf);
+    $insert->bindValue(":e", $email);
+    $insert->bindValue(":d", $data);
+    $res = $insert->execute();
+}
 
-// $insert = $pdo->prepare("INSERT INTO cliente(nome, cpf, email_cliente, data_nascimento) VALUES(:n, :c, :e, :d)");
-// $insert->bindValue(":n", $nome);
-// $insert->bindValue(":c", $cpf);
-// $insert->bindValue(":e", $email);
-// $insert->bindValue(":d", $data);
-// $res = $insert->execute();
 
 
 // ============================================================//
