@@ -8,7 +8,6 @@
 
 body {
     background-color: rgba(46, 144, 241, 0.795);
-    color: white;
 }
 h1 {
     text-align: center;
@@ -44,7 +43,16 @@ input#cadastrar{
 label {
     font-size: 14pt;
 }
+/*  TABELA  */
 
-.lateral {
-    background-color: blueviolet;
+.tabela {
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.308);
+    margin: 0%;
+    padding: 0%;
+}
+
+.tabela thead {
+    background-color: rgba(128, 128, 128, 0.63);
+    color: white;
 }
