@@ -2,7 +2,7 @@
 
 $dsn = 'mysql:host=localhost;dbname=mercado';
 $user = 'root';
-$pass = '03101995';
+$pass = 'senha';
 
 try {
     //  $pdo é uma variável de conexão que eu mesmo criei e usarei ela como uma instância 
@@ -21,7 +21,7 @@ $data = date('Y-m-d', strtotime($_POST['data_nascimento']));
 //==================================================== //
 /* INSERT DE  DADOS */
 
-/* VERIFICANDO SE JA POSSUI CADASTRO */
+/* VERIFICANDO SE JA POSSUI CADASTRO POR E-MAIL REPETIDO*/
 $cmd = $pdo->prepare("SELECT * FROM cliente WHERE email_cliente = :e;");
 $cmd->bindValue(":e", $email);
 $cmd->execute();
